@@ -315,7 +315,7 @@ class YOLOLayer(nn.Module):
             bs = 1  # batch size
         else:
             bs, _, ny, nx = p.shape  # bs, 255, 13, 13
-            if (self.nx, self.ny) != (nx, ny):
+            if (self.nx, self.ny) != (nx, ny) or self.grid is None:
                 self.create_grids((nx, ny), p.device)
 
         # p.view(bs, 255, 13, 13) -- > (bs, 3, 13, 13, 85)  # (bs, anchors, grid, grid, classes + xywh)
